@@ -35,7 +35,7 @@ export default async function Home() {
               return (
                 <tr key={item.id} className="even:bg-zinc-100">
                   <td className="p-2">{item.title}</td>
-                  <td className="p-2">R$ {item.price}</td>
+                  <td className="p-2">R$ <strong>{item.price}</strong></td>
                   <td className="p-2">{item.category}</td>
                   <td className="p-2 flex items-center justify-between">
                     {item.createdAt}

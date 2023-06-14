@@ -41,21 +41,21 @@ const Sales = ({ sales }: SalesArrayProps) => {
     <div className="flex flex-col gap-4">
       <span className="text-xl font-semibold">Vendas</span>
       <div className="grid grid-cols-4 gap-8">
-        <div className="col-span-1 border rounded-md border-zinc-200">
+        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
           <span>Hoje (dia {currentDay})</span>
-          <span>{soldToday}</span>
+          <span>R$ <strong className="text-2xl">{soldToday}</strong></span>
         </div>
-        <div className="col-span-1 border rounded-md border-zinc-200">
-          Nesse mês ({currentMonth})
-          <span>
-            {soldThisMonth}
+        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
+          <span>Nesse mês ({currentMonth})</span>
+          <span>R$ {" "}
+            <strong className="text-2xl">{soldThisMonth}</strong>
           </span>
         </div>
-        <div className="col-span-1 border rounded-md border-zinc-200">
-          Total
-          {totalSold}
+        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
+          <span>Total</span>
+          <span>R$ <strong className="text-2xl">{totalSold}</strong></span>
         </div>
-        <div className="col-span-1 border rounded-md border-zinc-200">
+        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
           Por categoria
         </div>
       </div>
