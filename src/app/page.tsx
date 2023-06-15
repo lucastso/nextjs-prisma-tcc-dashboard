@@ -12,6 +12,10 @@ export default async function Home() {
   const requestSales = await api.get("/sales");
   const sales: SalesProps[] = requestSales.data;
 
+  const formatToPrice = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  }
+
   return (
     <main className="mb-auto p-8 space-y-12">
       <Sales sales={sales}/>
@@ -35,7 +39,7 @@ export default async function Home() {
               return (
                 <tr key={item.id} className="even:bg-zinc-100">
                   <td className="p-2">{item.title}</td>
-                  <td className="p-2">R$ <strong>{item.price}</strong></td>
+                  <td className="p-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
                   <td className="p-2">{item.category}</td>
                   <td className="p-2 flex items-center justify-between">
                     {item.createdAt}

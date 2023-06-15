@@ -21,26 +21,24 @@ const AddButton = () => {
 
     const price = typeof priceString === "string" ? parseFloat(priceString) : 0;
 
-    if(title == "" || desc == "" || category == "" || image == "" || priceString == 0) {
-        alert("Todos os campos devem ser preenchidos!");
-    }
-
-    if(typeof price == "string") {
-        alert("O preço deve ser apenas em números, sem pontuação!");
-    }
-
-    try {
-      await api.post("/products", {
-        title,
-        description: desc,
-        price,
-        image,
-        category,
-      });
-
-      router.refresh()
-    } catch (error) {
-      alert(error);
+    if (!title || !desc || !category || !image || !priceString) {
+      alert("Todos os campos devem ser preenchidos!");
+    } else if (typeof price !== "number") {
+      alert("O preço deve ser apenas em números, sem pontuação!");
+    } else {
+      try {
+        await api.post("/products", {
+          title,
+          description: desc,
+          price,
+          image,
+          category,
+        });
+    
+        router.refresh();
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
