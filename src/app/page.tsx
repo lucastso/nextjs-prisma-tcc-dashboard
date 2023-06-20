@@ -38,10 +38,10 @@ export default async function Home() {
             {products.map((item) => {
               return (
                 <tr key={item.id} className="even:bg-zinc-100">
-                  <td className="p-2">{item.title}</td>
-                  <td className="p-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
-                  <td className="p-2">{item.category}</td>
-                  <td className="p-2 flex items-center justify-between">
+                  <td className="h-14 px-2">{item.title}</td>
+                  <td className="h-14 px-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
+                  <td className="h-14 px-2">{item.category}</td>
+                  <td className="h-14 px-2 flex items-center justify-between">
                     {item.createdAt.replace("T", "/").slice(0, -5)}
                     <div className="flex items-center gap-2">
                       <button className="px-4 py-2 bg-green-400 rounded-md text-white">

@@ -73,6 +73,27 @@ const Sales = ({ sales }: SalesArrayProps) => {
           <span>R$ <strong className="text-2xl">{formatToPrice(totalSold)}</strong></span>
         </div>
       </div>
+
+        <table className="text-left">
+            <tbody>
+              <tr>
+                <th className="p-4 border border-zinc-200">Nome</th>
+                <th className="p-4 border border-zinc-200">Preço</th>
+                <th className="p-4 border border-zinc-200">Categoria</th>
+                <th className="p-4 border border-zinc-200">Adicionado em</th>
+              </tr>
+              {sales.slice(0, 20).map((item) => {
+                return (
+                  <tr key={item.id} className="even:bg-zinc-100">
+                    <td className="h-14 px-2">{item.title}</td>
+                    <td className="h-14 px-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
+                    <td className="h-14 px-2">{item.category}</td>
+                    <td className="h-14 px-2 flex items-center justify-between">{item.createdAt.replace("T", "/").slice(0, -5)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
     </div>
   );
 };
