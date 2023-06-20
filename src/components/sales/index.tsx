@@ -28,8 +28,15 @@ const Sales = ({ sales }: SalesArrayProps) => {
   const soldToday = sales
     .filter(
       (element) => element.createdAt.slice(8, 10) === currentDay.toString()
-    )
-    .reduce((total, element) => total + element.price, 0);
+    ).reduce((total, element) => total + element.price, 0);
+
+  const soldThisWeek = sales
+    .filter((element) => {
+      const saleDate = new Date(element.createdAt);
+      const today = new Date();
+      const daysAgo = today.getDate() - saleDate.getDate();
+      return daysAgo <= 7 && saleDate >= new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    }).reduce((total, element) => total + element.price, 0);
 
   const soldThisMonth = sales.filter(
     (sale) => sale.createdAt.slice(0, 7) === new Date().toISOString().slice(0, 7)
@@ -50,6 +57,12 @@ const Sales = ({ sales }: SalesArrayProps) => {
           <span>R$ <strong className="text-2xl">{formatToPrice(soldToday)}</strong></span>
         </div>
         <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
+          <span>Nessa semana</span>
+          <span>R$ {" "}
+            <strong className="text-2xl">{formatToPrice(soldThisWeek)}</strong>
+          </span>
+        </div>
+        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
           <span>Nesse mês ({currentMonth})</span>
           <span>R$ {" "}
             <strong className="text-2xl">{formatToPrice(soldThisMonth)}</strong>
@@ -58,9 +71,6 @@ const Sales = ({ sales }: SalesArrayProps) => {
         <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
           <span>Total</span>
           <span>R$ <strong className="text-2xl">{formatToPrice(totalSold)}</strong></span>
-        </div>
-        <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
-          Por categoria
         </div>
       </div>
     </div>
