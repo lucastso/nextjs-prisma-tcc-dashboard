@@ -22,7 +22,6 @@ const AddButton = () => {
       await api.post("/products", data);
       router.refresh();
     } catch (error) {
-      console.log(error);
     }
   }
 
