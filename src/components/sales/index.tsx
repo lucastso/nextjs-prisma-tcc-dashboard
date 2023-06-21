@@ -1,6 +1,6 @@
-import { ProductProps } from "@/types/product_props";
 import { SalesProps } from "@/types/sales_props";
 import React from "react";
+import SalesList from "../sales_list";
 
 type SalesArrayProps = {
   sales: SalesProps[];
@@ -50,7 +50,7 @@ const Sales = ({ sales }: SalesArrayProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <span className="text-xl font-semibold">Vendas ({sales.length})</span>
+      <span className="text-xl font-semibold">Vendas</span>
       <div className="grid grid-cols-4 gap-8">
         <div className="col-span-1 border rounded-md border-zinc-200 flex flex-col gap-4 p-4">
           <span>Hoje (dia {currentDay})</span>
@@ -74,26 +74,7 @@ const Sales = ({ sales }: SalesArrayProps) => {
         </div>
       </div>
 
-        <table className="text-left">
-            <tbody>
-              <tr>
-                <th className="p-4 border border-zinc-200">Nome</th>
-                <th className="p-4 border border-zinc-200">Preço</th>
-                <th className="p-4 border border-zinc-200">Categoria</th>
-                <th className="p-4 border border-zinc-200">Adicionado em</th>
-              </tr>
-              {sales.slice(0, 20).map((item) => {
-                return (
-                  <tr key={item.id} className="even:bg-zinc-100">
-                    <td className="h-14 px-2">{item.title}</td>
-                    <td className="h-14 px-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
-                    <td className="h-14 px-2">{item.category}</td>
-                    <td className="h-14 px-2 flex items-center justify-between">{item.createdAt.replace("T", "/").slice(0, -5)}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      <SalesList sales={sales} />
     </div>
   );
 };

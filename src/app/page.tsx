@@ -1,4 +1,5 @@
 import AddButton from "@/components/add_button";
+import ProductsList from "@/components/products_list";
 import RemoveButton from "@/components/remove_button";
 import Sales from "@/components/sales";
 import { api } from "@/lib/axios";
@@ -20,42 +21,7 @@ export default async function Home() {
     <main className="mb-auto p-8 space-y-12">
       <Sales sales={sales}/>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-semibold">
-            Produtos ({products.length})
-          </span>
-          <AddButton />
-        </div>
-        <table className="text-left">
-          <tbody>
-            <tr>
-              <th className="p-4 border border-zinc-200">Nome</th>
-              <th className="p-4 border border-zinc-200">Preço</th>
-              <th className="p-4 border border-zinc-200">Categoria</th>
-              <th className="p-4 border border-zinc-200">Adicionado em</th>
-            </tr>
-            {products.map((item) => {
-              return (
-                <tr key={item.id} className="even:bg-zinc-100">
-                  <td className="h-14 px-2">{item.title}</td>
-                  <td className="h-14 px-2">R$ <strong>{formatToPrice(item.price)}</strong></td>
-                  <td className="h-14 px-2">{item.category}</td>
-                  <td className="h-14 px-2 flex items-center justify-between">
-                    {item.createdAt.replace("T", "/").slice(0, -5)}
-                    <div className="flex items-center gap-2">
-                      <button className="px-4 py-2 bg-green-400 rounded-md text-white">
-                        Editar
-                      </button>
-                      <RemoveButton id={item.id} title={item.title} />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <ProductsList products={products} />
     </main>
   );
 }
