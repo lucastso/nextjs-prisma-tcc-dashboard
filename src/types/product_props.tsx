@@ -5,5 +5,6 @@ export interface ProductProps {
   image: string;
   category: string;
   price: number;
+  quantity: number;
   createdAt: string;
 }

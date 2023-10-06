@@ -50,6 +50,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
         <tbody>
           <tr>
             <th className="p-4 border border-zinc-200">Nome</th>
+            <th className="p-4 border border-zinc-200">Quantidade</th>
             <th className="p-4 border border-zinc-200">Preço</th>
             <th className="p-4 border border-zinc-200">Categoria</th>
             <th className="p-4 border border-zinc-200">Adicionado em</th>
@@ -58,6 +59,15 @@ const ProductsList = ({ products }: ProductsListProps) => {
             return (
               <tr key={item.id} className="even:bg-zinc-100">
                 <td className="h-14 px-2">{item.title}</td>
+                <td
+                  className={`${
+                    item.quantity < 5
+                      ? "text-red-400 font-bold"
+                      : "text-[#18181b]"
+                  } h-14 px-2`}
+                >
+                  {item.quantity}
+                </td>
                 <td className="h-14 px-2">
                   R$ <strong>{formatToPrice(item.price)}</strong>
                 </td>

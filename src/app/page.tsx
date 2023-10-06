@@ -13,13 +13,9 @@ export default async function Home() {
   const requestSales = await api.get("/sales");
   const sales: SalesProps[] = requestSales.data;
 
-  const formatToPrice = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-  }
-
   return (
     <main className="mb-auto p-8 space-y-12">
-      <Sales sales={sales}/>
+      <Sales sales={sales} />
 
       <ProductsList products={products} />
     </main>
