@@ -28,64 +28,113 @@ const ProductsList = ({ products }: ProductsListProps) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+  const lowQuantityProducts = products.filter(
+    (product) => product.quantity <= 5
+  ).length;
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <span className="text-xl font-semibold">
-          Produtos ({products.length})
-        </span>
-        <div className="flex items-center gap-8">
-          <div
-            className={`items-center gap-8 ${
-              products.length > 15 ? "flex" : "hidden"
-            }`}
-          >
-            <button onClick={handleShowMoreClick}>Mostrar mais</button>
-            <button onClick={handleShowLessClick}>Mostrar menos</button>
-          </div>
-          <AddButton />
-        </div>
-      </div>
-      <table className="text-left">
-        <tbody>
-          <tr>
-            <th className="p-4 border border-zinc-200">Nome</th>
-            <th className="p-4 border border-zinc-200">Quantidade</th>
-            <th className="p-4 border border-zinc-200">Preço</th>
-            <th className="p-4 border border-zinc-200">Categoria</th>
-            <th className="p-4 border border-zinc-200">Adicionado em</th>
-          </tr>
-          {products.slice(0, visibleProducts).map((item) => {
-            return (
-              <tr key={item.id} className="even:bg-zinc-100">
-                <td className="h-14 px-2">{item.title}</td>
-                <td
-                  className={`${
-                    item.quantity < 5
-                      ? "text-red-400 font-bold"
-                      : "text-[#18181b]"
-                  } h-14 px-2`}
-                >
-                  {item.quantity}
-                </td>
-                <td className="h-14 px-2">
-                  R$ <strong>{formatToPrice(item.price)}</strong>
-                </td>
-                <td className="h-14 px-2">{item.category}</td>
-                <td className="h-14 px-2 flex items-center justify-between">
-                  {item.createdAt.replace("T", "/").slice(0, -5)}
-                  <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-green-400 rounded-md text-white">
-                      Editar
-                    </button>
-                    <RemoveButton id={item.id} title={item.title} />
-                  </div>
-                </td>
+    <div className="space-y-12">
+      {lowQuantityProducts != 0 ? (
+        <div className="flex flex-col gap-4">
+          <span className="text-xl font-semibold text-red-400">
+            Atenção, você tem produtos ficando sem estoque! (
+            {lowQuantityProducts})
+          </span>
+          <table className="text-left">
+            <tbody>
+              <tr className="bg-red-50 text-red-400">
+                <th className="p-4 border border-red-100">Nome</th>
+                <th className="p-4 border border-red-100">Quantidade</th>
+                <th className="p-4 border border-red-100">Preço</th>
+                <th className="p-4 border border-red-100">Categoria</th>
+                <th className="p-4 border border-red-100">Adicionado em</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              {products
+                .filter((product) => product.quantity <= 5)
+                .map((item) => {
+                  return (
+                    <tr
+                      key={item.id}
+                      className="even:bg-red-100/25 text-red-400"
+                    >
+                      <td className="h-14 px-2">{item.title}</td>
+                      <td className="h-14 px-2">{item.quantity}</td>
+                      <td className="h-14 px-2">
+                        R$ <strong>{formatToPrice(item.price)}</strong>
+                      </td>
+                      <td className="h-14 px-2">{item.category}</td>
+                      <td className="h-14 px-2 flex items-center justify-between">
+                        {item.createdAt.replace("T", "/").slice(0, -5)}
+                        <div className="flex items-center gap-2">
+                          <button className="px-4 py-2 bg-red-100 rounded-md text-red-400">
+                            Editar
+                          </button>
+                          <RemoveButton id={item.id} title={item.title} />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <></>
+      )}
+
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <span className="text-xl font-semibold">
+            Produtos ({products.length})
+          </span>
+          <div className="flex items-center gap-8">
+            <div
+              className={`items-center gap-8 ${
+                products.length > 15 ? "flex" : "hidden"
+              }`}
+            >
+              <button onClick={handleShowMoreClick}>Mostrar mais</button>
+              <button onClick={handleShowLessClick}>Mostrar menos</button>
+            </div>
+            <AddButton />
+          </div>
+        </div>
+        <table className="text-left">
+          <tbody>
+            <tr>
+              <th className="p-4 border border-zinc-200">Nome</th>
+              <th className="p-4 border border-zinc-200">Quantidade</th>
+              <th className="p-4 border border-zinc-200">Preço</th>
+              <th className="p-4 border border-zinc-200">Categoria</th>
+              <th className="p-4 border border-zinc-200">Adicionado em</th>
+            </tr>
+            {products
+              .slice(0, visibleProducts)
+              .filter((product) => product.quantity > 5)
+              .map((item) => {
+                return (
+                  <tr key={item.id} className="even:bg-zinc-100">
+                    <td className="h-14 px-2">{item.title}</td>
+                    <td className="h-14 px-2">{item.quantity}</td>
+                    <td className="h-14 px-2">
+                      R$ <strong>{formatToPrice(item.price)}</strong>
+                    </td>
+                    <td className="h-14 px-2">{item.category}</td>
+                    <td className="h-14 px-2 flex items-center justify-between">
+                      {item.createdAt.replace("T", "/").slice(0, -5)}
+                      <div className="flex items-center gap-2">
+                        <button className="px-4 py-2 bg-green-400 rounded-md text-white">
+                          Editar
+                        </button>
+                        <RemoveButton id={item.id} title={item.title} />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

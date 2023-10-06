@@ -25,7 +25,9 @@ const SalesList = ({ sales }: SalesListProps) => {
   return (
     <>
       <div className="flex items-center justify-between">
-        <span className="text-xl font-semibold">Listagem de vendas ({sales.length})</span>
+        <span className="text-xl font-semibold">
+          Listagem de vendas ({sales.length})
+        </span>
         <div
           className={`items-center gap-8 ${
             sales.length > 10 ? "flex" : "hidden"
@@ -36,30 +38,36 @@ const SalesList = ({ sales }: SalesListProps) => {
         </div>
       </div>
 
-      <table className="text-left">
-        <tbody>
-          <tr>
-            <th className="p-4 border border-zinc-200">Nome</th>
-            <th className="p-4 border border-zinc-200">Preço</th>
-            <th className="p-4 border border-zinc-200">Categoria</th>
-            <th className="p-4 border border-zinc-200">Adicionado em</th>
-          </tr>
-          {sales.slice(0, visibleSales).map((item) => {
-            return (
-              <tr key={item.id} className="even:bg-zinc-100">
-                <td className="h-14 px-2">{item.title}</td>
-                <td className="h-14 px-2">
-                  R$ <strong>{formatToPrice(item.price)}</strong>
-                </td>
-                <td className="h-14 px-2">{item.category}</td>
-                <td className="h-14 px-2 flex items-center justify-between">
-                  {item.createdAt.replace("T", "/").slice(0, -5)}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {sales.length > 0 ? (
+        <table className="text-left">
+          <tbody>
+            <tr>
+              <th className="p-4 border border-zinc-200">Nome</th>
+              <th className="p-4 border border-zinc-200">Preço</th>
+              <th className="p-4 border border-zinc-200">Categoria</th>
+              <th className="p-4 border border-zinc-200">Adicionado em</th>
+            </tr>
+            {sales.slice(0, visibleSales).map((item) => {
+              return (
+                <tr key={item.id} className="even:bg-zinc-100">
+                  <td className="h-14 px-2">{item.title}</td>
+                  <td className="h-14 px-2">
+                    R$ <strong>{formatToPrice(item.price)}</strong>
+                  </td>
+                  <td className="h-14 px-2">{item.category}</td>
+                  <td className="h-14 px-2 flex items-center justify-between">
+                    {item.createdAt.replace("T", "/").slice(0, -5)}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <div className="flex items-center justify-center my-4 text-red-400 text-xl">
+          <strong>Você não fez nenhuma venda :(</strong>
+        </div>
+      )}
     </>
   );
 };
