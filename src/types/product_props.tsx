@@ -3,8 +3,8 @@ export interface ProductProps {
   title: string;
   description: string;
   image: string;
+  quantity: number;
   category: string;
   price: number;
-  quantity: number;
   createdAt: string;
 }

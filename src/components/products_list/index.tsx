@@ -4,6 +4,7 @@ import { ProductProps } from "@/types/product_props";
 import AddButton from "../add_button";
 import RemoveButton from "../remove_button";
 import { useState } from "react";
+import EditButton from "../edit_button";
 
 type ProductsListProps = {
   products: ProductProps[];
@@ -66,9 +67,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
                       <td className="h-14 px-2 flex items-center justify-between">
                         {item.createdAt.replace("T", "/").slice(0, -5)}
                         <div className="flex items-center gap-2">
-                          <button className="px-4 py-2 bg-red-100 rounded-md text-red-400">
-                            Editar
-                          </button>
+                          <EditButton product={item} />
                           <RemoveButton id={item.id} title={item.title} />
                         </div>
                       </td>
@@ -123,9 +122,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
                     <td className="h-14 px-2 flex items-center justify-between">
                       {item.createdAt.replace("T", "/").slice(0, -5)}
                       <div className="flex items-center gap-2">
-                        <button className="px-4 py-2 bg-green-400 rounded-md text-white">
-                          Editar
-                        </button>
+                        <EditButton product={item} />
                         <RemoveButton id={item.id} title={item.title} />
                       </div>
                     </td>
