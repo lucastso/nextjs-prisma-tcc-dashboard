@@ -1,7 +1,6 @@
-import Navbar from "@/components/navbar";
 import "./globals.css";
 import { Outfit } from "next/font/google";
-import Footer from "@/components/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -20,9 +19,11 @@ export default function RootLayout({
       <body
         className={`${outfit.className} text-zinc-900 flex min-h-screen flex-col justify-between overflow-x-hidden`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <ClerkProvider
+          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        >
+          {children}
+        </ClerkProvider>
       </body>
     </html>
   );

@@ -1,4 +1,6 @@
 import AddButton from "@/components/add_button";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import ProductsList from "@/components/products_list";
 import { api } from "@/lib/axios";
 import { ProductProps } from "@/types/product_props";
@@ -8,8 +10,12 @@ export default async function Home() {
   const products: ProductProps[] = requestProducts.data;
 
   return (
-    <main className="mb-auto p-8 space-y-12">
-      <ProductsList products={products} />
-    </main>
+    <>
+      <Navbar />
+      <div className="mb-auto xs:p-6 lg:p-8 space-y-12">
+        <ProductsList products={products} />
+      </div>
+      <Footer />
+    </>
   );
 }
