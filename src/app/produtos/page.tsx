@@ -1,4 +1,3 @@
-import AddButton from "@/components/add_button";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ProductsList from "@/components/products_list";

@@ -38,7 +38,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
       {lowQuantityProducts != 0 ? (
         <div className="flex flex-col gap-4">
           <span className="text-xl font-semibold text-red-400">
-            Atenção, você tem produtos ficando sem estoque! (
+            Atenção, alguns produtos estão ficando sem estoque! (
             {lowQuantityProducts})
           </span>
           <table className="text-left">

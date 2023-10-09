@@ -65,7 +65,7 @@ const SalesList = ({ sales }: SalesListProps) => {
         </table>
       ) : (
         <div className="flex items-center justify-center my-4 text-red-400 text-xl">
-          <strong>Você não fez nenhuma venda :(</strong>
+          <strong>Sem vendas :(</strong>
         </div>
       )}
     </>
