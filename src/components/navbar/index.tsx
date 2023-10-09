@@ -2,7 +2,6 @@ import Image from "next/image";
 import logo from "../../assets/logo.svg";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
-import ProfileName from "../profile_name";
 
 const Navbar = () => {
   return (
@@ -13,7 +12,6 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center xs:gap-4 lg:gap-8 xs:text-sm lg:text-base">
-        <ProfileName />
         <UserButton afterSignOutUrl="/" />
       </div>
     </nav>
