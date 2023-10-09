@@ -3,6 +3,8 @@ import Link from "next/link";
 import Hero from "../assets/hero.png";
 
 export default function Home() {
+  const entry = [{}, {}];
+
   return (
     <main className="grid xs:grid-cols-1 lg:grid-cols-2 min-h-screen min-w-screen overflow-hidden">
       <div className="col-span-1 flex items-center justify-center overflow-hidden">
