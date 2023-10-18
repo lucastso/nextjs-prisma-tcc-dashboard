@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { api } from "@/lib/axios";
-import { ProductProps } from "@/types/product_props";
-import * as Dialog from "@radix-ui/react-dialog";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { api } from '@/lib/axios'
+import { ProductProps } from '@/types/product_props'
+import * as Dialog from '@radix-ui/react-dialog'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 const EditButton = ({ product }: { product: ProductProps }) => {
   const [formData, setFormData] = useState({
@@ -13,24 +13,24 @@ const EditButton = ({ product }: { product: ProductProps }) => {
     image: product.image,
     price: product.price,
     quantity: product.quantity,
-  });
-  const router = useRouter();
+  })
+  const router = useRouter()
 
   const handleEditProductSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
-      await api.put(`/products/${product.id}`, formData);
-      router.refresh();
+      await api.put(`/products/${product.id}`, formData)
+      router.refresh()
     } catch (error) {}
-  };
+  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
-    });
-  };
+    })
+  }
 
   return (
     <div className="relative max-h-screen">
@@ -40,7 +40,7 @@ const EditButton = ({ product }: { product: ProductProps }) => {
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/25 fixed inset-0" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-2/3 w-1/3 max-h-2/3 max-w-1/3 bg-white rounded-md p-4 flex flex-col justify-between border border-zinc-200">
+          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-1/3 max-h-auto max-w-1/3 bg-white rounded-md p-4 flex flex-col justify-between border border-zinc-200">
             <div className="flex flex-col gap-4">
               <Dialog.Title className="text-xl font-semibold">
                 Alterar item
@@ -118,7 +118,7 @@ const EditButton = ({ product }: { product: ProductProps }) => {
         </Dialog.Portal>
       </Dialog.Root>
     </div>
-  );
-};
+  )
+}
 
-export default EditButton;
+export default EditButton

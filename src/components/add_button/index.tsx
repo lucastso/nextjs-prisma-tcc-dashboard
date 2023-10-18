@@ -1,28 +1,28 @@
-"use client";
+'use client'
 
-import { api } from "@/lib/axios";
-import * as Dialog from "@radix-ui/react-dialog";
-import { useRouter } from "next/navigation";
+import { api } from '@/lib/axios'
+import * as Dialog from '@radix-ui/react-dialog'
+import { useRouter } from 'next/navigation'
 
 const AddButton = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleAddProductSubmit = async (event: any) => {
-    event.preventDefault();
+    event.preventDefault()
 
     const data = {
       title: String(event.target.title.value),
       description: String(event.target.description.value),
       price: Number(event.target.price.value),
+      quantity: Number(event.target.quantity.value),
       image: String(event.target.image.value),
       category: String(event.target.category.value),
-    };
+    }
 
     try {
-      await api.post("/products", data);
-      router.refresh();
-    } catch (error) {
-    }
+      await api.post('/products', data)
+      router.refresh()
+    } catch (error) {}
   }
 
   return (
@@ -33,7 +33,7 @@ const AddButton = () => {
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/25 fixed inset-0" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-2/3 w-1/3 max-h-2/3 max-w-1/3 bg-white rounded-md p-4 flex flex-col justify-between border border-zinc-200">
+          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-1/3 max-h-auto max-w-1/3 bg-white rounded-md p-4 flex flex-col gap-4 justify-between border border-zinc-200">
             <div className="flex flex-col gap-4">
               <Dialog.Title className="text-xl font-semibold">
                 Adicionar item
@@ -70,6 +70,13 @@ const AddButton = () => {
                   name="price"
                   className="bg-zinc-100 border border-zinc-200 rounded-md px-2 py-2 focus:outline-none focus:border-zinc-300"
                 />
+                <label htmlFor="quantity">Quantidade:</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  className="bg-zinc-100 border border-zinc-200 rounded-md px-2 py-2 focus:outline-none focus:border-zinc-300"
+                />
                 <label htmlFor="category">Categoria:</label>
                 <input
                   type="text"
@@ -101,7 +108,7 @@ const AddButton = () => {
         </Dialog.Portal>
       </Dialog.Root>
     </div>
-  );
-};
+  )
+}
 
-export default AddButton;
+export default AddButton

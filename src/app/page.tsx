@@ -29,7 +29,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4 items-center w-full">
           <Link
-            href="/sign-in"
+            href="/vendas"
             className="w-1/3 py-3 rounded-md bg-fuchsia-400 font-bold text-center"
           >
             Acessar dashboard

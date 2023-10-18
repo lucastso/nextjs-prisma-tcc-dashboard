@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex items-center xs:gap-4 lg:gap-8 xs:text-sm lg:text-base">
         <Image src={logo} alt="Paracord logo" className="xs:w-24 lg:w-32" />
         <PedidosNavItem />
-        <Link href="/pedidos">Pedidos</Link>
+        <Link href="/vendas">Vendas</Link>
         <Link href="/produtos">Produtos</Link>
       </div>
 
