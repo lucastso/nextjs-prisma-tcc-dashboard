@@ -4,7 +4,7 @@ import ProductsList from "@/components/products_list";
 import { api } from "@/lib/axios";
 import { ProductProps } from "@/types/product_props";
 
-export default async function Home() {
+export default async function Produtos() {
   const requestProducts = await api.get("/products");
   const products: ProductProps[] = requestProducts.data;
 

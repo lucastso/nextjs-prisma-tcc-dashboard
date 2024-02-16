@@ -5,7 +5,7 @@ export interface ProductProps {
   title: string;
   description: string;
   image: string;
-  quantity: string;
+  quantity: number;
   category: string;
   price: number;
   createdAt: string;

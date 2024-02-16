@@ -4,7 +4,7 @@ import OrdersList from "@/components/orders_list";
 import { api } from "@/lib/axios";
 import { OrdersProps } from "@/types/orders_props";
 
-export default async function Home() {
+export default async function Pedidos() {
   const requestOrders = await api.get("/orders");
   const orders: OrdersProps[] = requestOrders.data;
 

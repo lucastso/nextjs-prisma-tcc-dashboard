@@ -1,17 +1,28 @@
-'use client'
+"use client";
 
-import { OrdersProps } from '@/types/orders_props'
+import { api } from "@/lib/axios";
+import { OrdersProps } from "@/types/orders_props";
+import { useRouter } from "next/navigation";
 
 type OrdersListProps = {
-  orders: OrdersProps[]
-}
+  orders: OrdersProps[];
+};
 
 const OrdersList = ({ orders }: OrdersListProps) => {
-  const formatToPrice = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-  }
+  const router = useRouter();
 
-  const doneOrders = orders.filter((order) => order.done == true).length
+  const formatToPrice = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
+  const handleOrderClick = async (id: string) => {
+    try {
+      await api.post(`/order/${id}`);
+      router.refresh();
+    } catch (error) {}
+  };
+
+  const doneOrders = orders.filter((order) => order.done == true).length;
 
   return (
     <div className="space-y-12">
@@ -24,28 +35,32 @@ const OrdersList = ({ orders }: OrdersListProps) => {
             <tbody>
               <tr className="bg-red-50 text-red-400">
                 <th className="p-4 border border-red-100">Nome</th>
-                <th className="p-4 border border-red-100">Quantidade</th>
-                <th className="p-4 border border-red-100">Preço</th>
-                <th className="p-4 border border-red-100">Categoria</th>
-                <th className="p-4 border border-red-100">Adicionado em</th>
+                <th className="p-4 border border-red-100">Endereço</th>
+                <th className="p-4 border border-red-100">Criado em</th>
               </tr>
               {orders.map((item) => {
+                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}`;
                 return (
                   <tr key={item.id} className="even:bg-red-100/25 text-red-400">
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2">
+                    <td className="h-14 px-4">{item.name}</td>
+                    <td className="h-14 px-4">
                       R$ <strong>{formatToPrice(0)}</strong>
                     </td>
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2 flex items-center justify-between">
-                      {item.createdAt.replace('T', '/').slice(0, -5)}
-                      <div className="flex items-center gap-2">
-                        botão feito order
-                      </div>
+                    <td className="h-14 px-4" title={address}>
+                      {address.length > 25 ? address : address}
+                    </td>
+                    <td className="h-14 px-4 flex items-center justify-between">
+                      {item.createdAt.replace("T", "/").slice(0, -5)}
+                      <button
+                        type="submit"
+                        onClick={() => handleOrderClick(item.id)}
+                        className="px-4 py-4 bg-blue-400 rounded-md text-white"
+                      >
+                        Enviar
+                      </button>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
@@ -61,29 +76,32 @@ const OrdersList = ({ orders }: OrdersListProps) => {
           <table className="text-left">
             <tbody>
               <tr>
-                <th className="p-4 border border-zinc-200">Nome</th>
-                <th className="p-4 border border-zinc-200">Quantidade</th>
-                <th className="p-4 border border-zinc-200">Preço</th>
-                <th className="p-4 border border-zinc-200">Categoria</th>
-                <th className="p-4 border border-zinc-200">Adicionado em</th>
+                <th className="p-4 border border-zinc-100">Nome</th>
+                <th className="p-4 border border-zinc-100">Endereço</th>
+                <th className="p-4 border border-zinc-100">Criado em</th>
               </tr>
               {orders.map((item) => {
+                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}aaaaaaaaaaaaaaaaaaaa`;
                 return (
                   <tr key={item.id} className="even:bg-zinc-100">
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2">
-                      R$ <strong>{formatToPrice(0)}</strong>
+                    <td className="h-14 px-4">{item.name}</td>
+                    <td className="h-14 px-4" title={address}>
+                      {address.length > 50
+                        ? address.slice(0, 50) + "..."
+                        : address}
                     </td>
-                    <td className="h-14 px-2">{item.name}</td>
-                    <td className="h-14 px-2 flex items-center justify-between">
-                      {item.createdAt.replace('T', '/').slice(0, -5)}
-                      <div className="flex items-center gap-2">
-                        botão feito order
-                      </div>
+                    <td className="h-14 px-4 flex items-center justify-between">
+                      {item.createdAt.replace("T", "/").slice(0, -5)}
+                      <button
+                        type="submit"
+                        onClick={() => handleOrderClick(item.id)}
+                        className="px-4 py-2 bg-blue-400 rounded-md text-white"
+                      >
+                        Enviar
+                      </button>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
@@ -94,7 +112,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrdersList
+export default OrdersList;

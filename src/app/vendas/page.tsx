@@ -4,7 +4,7 @@ import Sales from "@/components/sales";
 import { api } from "@/lib/axios";
 import { SalesProps } from "@/types/sales_props";
 
-export default async function Home() {
+export default async function Vendas() {
   const requestSales = await api.get("/sales");
   const sales: SalesProps[] = requestSales.data;
 
