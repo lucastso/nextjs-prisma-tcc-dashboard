@@ -1,28 +1,28 @@
-"use client";
+'use client'
 
-import { api } from "@/lib/axios";
-import { OrdersProps } from "@/types/orders_props";
-import { useRouter } from "next/navigation";
+import { api } from '@/lib/axios'
+import { OrdersProps } from '@/types/orders_props'
+import { useRouter } from 'next/navigation'
 
 type OrdersListProps = {
-  orders: OrdersProps[];
-};
+  orders: OrdersProps[]
+}
 
 const OrdersList = ({ orders }: OrdersListProps) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const formatToPrice = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  }
 
   const handleOrderClick = async (id: string) => {
     try {
-      await api.post(`/order/${id}`);
-      router.refresh();
+      await api.post(`/order/${id}`)
+      router.refresh()
     } catch (error) {}
-  };
+  }
 
-  const doneOrders = orders.filter((order) => order.done == true).length;
+  const doneOrders = orders.filter((order) => order.done == true).length
 
   return (
     <div className="space-y-12">
@@ -39,7 +39,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                 <th className="p-4 border border-red-100">Criado em</th>
               </tr>
               {orders.map((item) => {
-                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}`;
+                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}`
                 return (
                   <tr key={item.id} className="even:bg-red-100/25 text-red-400">
                     <td className="h-14 px-4">{item.name}</td>
@@ -47,10 +47,12 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                       R$ <strong>{formatToPrice(0)}</strong>
                     </td>
                     <td className="h-14 px-4" title={address}>
-                      {address.length > 25 ? address : address}
+                      {address.length > 50
+                        ? address.slice(0, 50) + '...'
+                        : address}
                     </td>
                     <td className="h-14 px-4 flex items-center justify-between">
-                      {item.createdAt.replace("T", "/").slice(0, -5)}
+                      {item.createdAt.replace('T', '/').slice(0, -5)}
                       <button
                         type="submit"
                         onClick={() => handleOrderClick(item.id)}
@@ -60,7 +62,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                       </button>
                     </td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -81,17 +83,17 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                 <th className="p-4 border border-zinc-100">Criado em</th>
               </tr>
               {orders.map((item) => {
-                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}aaaaaaaaaaaaaaaaaaaa`;
+                const address = `${item.address}, ${item.neighborhood}. ${item.city} - ${item.state}, ${item.cep}`
                 return (
                   <tr key={item.id} className="even:bg-zinc-100">
                     <td className="h-14 px-4">{item.name}</td>
                     <td className="h-14 px-4" title={address}>
                       {address.length > 50
-                        ? address.slice(0, 50) + "..."
+                        ? address.slice(0, 50) + '...'
                         : address}
                     </td>
                     <td className="h-14 px-4 flex items-center justify-between">
-                      {item.createdAt.replace("T", "/").slice(0, -5)}
+                      {item.createdAt.replace('T', '/').slice(0, -5)}
                       <button
                         type="submit"
                         onClick={() => handleOrderClick(item.id)}
@@ -101,7 +103,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                       </button>
                     </td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -112,7 +114,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default OrdersList;
+export default OrdersList

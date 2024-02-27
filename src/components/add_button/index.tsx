@@ -14,7 +14,7 @@ const AddButton = () => {
       title: String(event.target.title.value),
       description: String(event.target.description.value),
       price: Number(event.target.price.value),
-      quantity: Number(event.target.quantity.value),
+      stock: Number(event.target.stock.value),
       image: String(event.target.image.value),
       category: String(event.target.category.value),
     }
@@ -70,11 +70,11 @@ const AddButton = () => {
                   name="price"
                   className="bg-zinc-100 border border-zinc-200 rounded-md px-2 py-2 focus:outline-none focus:border-zinc-300"
                 />
-                <label htmlFor="quantity">Quantidade:</label>
+                <label htmlFor="stock">Quantidade:</label>
                 <input
                   type="number"
-                  id="quantity"
-                  name="quantity"
+                  id="stock"
+                  name="stock"
                   className="bg-zinc-100 border border-zinc-200 rounded-md px-2 py-2 focus:outline-none focus:border-zinc-300"
                 />
                 <label htmlFor="category">Categoria:</label>

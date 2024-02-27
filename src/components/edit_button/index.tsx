@@ -12,7 +12,7 @@ const EditButton = ({ product }: { product: ProductProps }) => {
     description: product.description,
     image: product.image,
     price: product.price,
-    quantity: product.quantity,
+    stock: product.stock,
   })
   const router = useRouter()
 
@@ -85,7 +85,7 @@ const EditButton = ({ product }: { product: ProductProps }) => {
                 />
                 <label htmlFor="quantity">Quantidade:</label>
                 <input
-                  value={formData.quantity}
+                  value={formData.stock}
                   onChange={handleChange}
                   type="number"
                   id="quantity"

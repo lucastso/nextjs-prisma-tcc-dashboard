@@ -1,12 +1,12 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import OrdersList from "@/components/orders_list";
-import { api } from "@/lib/axios";
-import { OrdersProps } from "@/types/orders_props";
+import Footer from '@/components/footer'
+import Navbar from '@/components/navbar'
+import OrdersList from '@/components/orders_list'
+import { api } from '@/lib/axios'
+import { OrdersProps } from '@/types/orders_props'
 
 export default async function Pedidos() {
-  const requestOrders = await api.get("/orders");
-  const orders: OrdersProps[] = requestOrders.data;
+  const requestOrders = await api.get('/orders')
+  const orders: OrdersProps[] = requestOrders.data
 
   return (
     <>
@@ -16,5 +16,5 @@ export default async function Pedidos() {
       </div>
       <Footer />
     </>
-  );
+  )
 }

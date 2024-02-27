@@ -1,12 +1,12 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import Sales from "@/components/sales";
-import { api } from "@/lib/axios";
-import { SalesProps } from "@/types/sales_props";
+import Footer from '@/components/footer'
+import Navbar from '@/components/navbar'
+import Sales from '@/components/sales'
+import { api } from '@/lib/axios'
+import { SalesProps } from '@/types/sales_props'
 
 export default async function Vendas() {
-  const requestSales = await api.get("/sales");
-  const sales: SalesProps[] = requestSales.data;
+  const requestSales = await api.get('/sales')
+  const sales: SalesProps[] = requestSales.data
 
   return (
     <>
@@ -16,5 +16,5 @@ export default async function Vendas() {
       </div>
       <Footer />
     </>
-  );
+  )
 }
