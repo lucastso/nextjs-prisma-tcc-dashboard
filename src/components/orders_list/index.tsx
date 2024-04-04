@@ -35,6 +35,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
             <tbody>
               <tr className="bg-red-50 text-red-400">
                 <th className="p-4 border border-red-100">Nome</th>
+                <th className="p-4 border border-red-100">Total</th>
                 <th className="p-4 border border-red-100">Endereço</th>
                 <th className="p-4 border border-red-100">Criado em</th>
               </tr>
@@ -43,6 +44,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
                 return (
                   <tr key={item.id} className="even:bg-red-100/25 text-red-400">
                     <td className="h-14 px-4">{item.name}</td>
+                    <td className="h-14 px-4">{item.total}</td>
                     <td className="h-14 px-4">
                       R$ <strong>{formatToPrice(0)}</strong>
                     </td>
