@@ -77,7 +77,7 @@ const OrdersList = ({ orders }: OrdersListProps) => {
         <span className="text-xl font-semibold">Pedidos ({orders.length})</span>
 
         {orders.length > 0 ? (
-          <table className="text-left">
+          <table className="text-left xs:w-[60rem] md:w-full overflow-x-scroll">
             <tbody>
               <tr>
                 <th className="p-4 border border-zinc-100">Nome</th>

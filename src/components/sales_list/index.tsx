@@ -1,26 +1,26 @@
-"use client";
+'use client'
 
-import { SalesProps } from "@/types/sales_props";
-import { useState } from "react";
+import { SalesProps } from '@/types/sales_props'
+import { useState } from 'react'
 
 type SalesListProps = {
-  sales: SalesProps[];
-};
+  sales: SalesProps[]
+}
 
 const SalesList = ({ sales }: SalesListProps) => {
-  const [visibleSales, setVisibleSales] = useState(10);
+  const [visibleSales, setVisibleSales] = useState(10)
 
   const formatToPrice = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  }
 
   const handleShowMoreClick = () => {
-    setVisibleSales((prevVisibleSales) => prevVisibleSales + 10);
-  };
+    setVisibleSales((prevVisibleSales) => prevVisibleSales + 10)
+  }
 
   const handleShowLessClick = () => {
-    setVisibleSales((prevVisibleSales) => prevVisibleSales - 10);
-  };
+    setVisibleSales((prevVisibleSales) => prevVisibleSales - 10)
+  }
 
   return (
     <>
@@ -30,7 +30,7 @@ const SalesList = ({ sales }: SalesListProps) => {
         </span>
         <div
           className={`items-center gap-8 ${
-            sales.length > 10 ? "flex" : "hidden"
+            sales.length > 10 ? 'flex' : 'hidden'
           }`}
         >
           <button onClick={handleShowMoreClick}>Mostrar mais</button>
@@ -39,7 +39,7 @@ const SalesList = ({ sales }: SalesListProps) => {
       </div>
 
       {sales.length > 0 ? (
-        <table className="text-left">
+        <table className="text-left xs:w-[40rem] md:w-full overflow-x-scroll">
           <tbody>
             <tr>
               <th className="p-4 border border-zinc-200">Nome</th>
@@ -56,10 +56,10 @@ const SalesList = ({ sales }: SalesListProps) => {
                   </td>
                   <td className="h-14 px-2">{item.category}</td>
                   <td className="h-14 px-2 flex items-center justify-between">
-                    {item.createdAt.replace("T", "/").slice(0, -5)}
+                    {item.createdAt.replace('T', '/').slice(0, -5)}
                   </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
@@ -69,7 +69,7 @@ const SalesList = ({ sales }: SalesListProps) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SalesList;
+export default SalesList

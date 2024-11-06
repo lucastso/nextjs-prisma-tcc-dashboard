@@ -1,19 +1,19 @@
-import "./globals.css";
-import { Outfit } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ptBR } from "@clerk/localizations";
+import './globals.css'
+import { Outfit } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
+import { ptBR } from '@clerk/localizations'
 
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "Paracord Dashboard",
-  description: "Paracord Dashboard",
-};
+  title: 'Paracord Dashboard',
+  description: 'Paracord Dashboard',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html>
@@ -28,5 +28,5 @@ export default function RootLayout({
         </ClerkProvider>
       </body>
     </html>
-  );
+  )
 }

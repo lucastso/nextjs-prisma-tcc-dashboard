@@ -1,8 +1,8 @@
-import Image from "next/image";
-import logo from "../../assets/logo.svg";
-import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
-import PedidosNavItem from "../pedidos_nav_item";
+import Image from 'next/image'
+import logo from '../../assets/logo.svg'
+import Link from 'next/link'
+import { UserButton } from '@clerk/nextjs'
+import PedidosNavItem from '../pedidos_nav_item'
 
 const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ const Navbar = () => {
         <UserButton afterSignOutUrl="/" />
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -82,7 +82,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
       )}
 
       <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap xs:space-y-4">
           <span className="text-xl font-semibold">
             Produtos ({products.length})
           </span>
@@ -98,7 +98,7 @@ const ProductsList = ({ products }: ProductsListProps) => {
             <AddButton />
           </div>
         </div>
-        <table className="text-left">
+        <table className="text-left xs:w-[60rem] md:w-full overflow-x-scroll">
           <tbody>
             <tr>
               <th className="p-4 border border-zinc-200">Nome</th>

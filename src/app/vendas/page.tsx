@@ -11,7 +11,7 @@ export default async function Vendas() {
   return (
     <>
       <Navbar />
-      <div className="mb-auto xs:p-6 lg:p-8">
+      <div className="mb-auto xs:p-6 lg:p-8 overflow-x-hidden">
         <Sales sales={sales} />
       </div>
       <Footer />

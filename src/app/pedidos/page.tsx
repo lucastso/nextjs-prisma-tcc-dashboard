@@ -11,7 +11,7 @@ export default async function Pedidos() {
   return (
     <>
       <Navbar />
-      <div className="mb-auto xs:p-6 lg:p-8 space-y-12">
+      <div className="mb-auto xs:p-6 lg:p-8 space-y-12 overflow-x-hidden">
         <OrdersList orders={orders} />
       </div>
       <Footer />

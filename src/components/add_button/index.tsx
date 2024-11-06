@@ -26,14 +26,14 @@ const AddButton = () => {
   }
 
   return (
-    <div className="relative max-h-screen">
+    <div className="relative max-h-screen max-w-screen">
       <Dialog.Root>
         <Dialog.Trigger className="px-4 py-2 bg-blue-400 rounded-md text-white">
           Adicionar
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/25 fixed inset-0" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-1/3 max-h-auto max-w-1/3 bg-white rounded-md p-4 flex flex-col gap-4 justify-between border border-zinc-200">
+          <Dialog.Content className="fixed lg:top-1/2 xs:top-0 lg:left-1/2 xs:left-0 xs:right-6 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 h-auto lg:w-1/3 xs:w-screen max-h-auto lg:max-w-1/3 bg-white rounded-md p-4 flex flex-col gap-4 justify-between border border-zinc-200">
             <div className="flex flex-col gap-4">
               <Dialog.Title className="text-xl font-semibold">
                 Adicionar item
