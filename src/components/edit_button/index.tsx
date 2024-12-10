@@ -21,8 +21,11 @@ const EditButton = ({ product }: { product: ProductProps }) => {
 
     try {
       await api.put(`/products/${product.id}`, formData)
+      alert('Produto alterado!')
       router.refresh()
-    } catch (error) {}
+    } catch (error) {
+      alert('Erro ao alterar produto. Tente novamente mais tarde!')
+    }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
