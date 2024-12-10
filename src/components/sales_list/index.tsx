@@ -28,14 +28,6 @@ const SalesList = ({ sales }: SalesListProps) => {
         <span className="text-xl font-semibold">
           Listagem de vendas ({sales.length})
         </span>
-        <div
-          className={`items-center gap-8 ${
-            sales.length > 10 ? 'flex' : 'hidden'
-          }`}
-        >
-          <button onClick={handleShowMoreClick}>Mostrar mais</button>
-          <button onClick={handleShowLessClick}>Mostrar menos</button>
-        </div>
       </div>
 
       {sales.length > 0 ? (
@@ -47,7 +39,7 @@ const SalesList = ({ sales }: SalesListProps) => {
               <th className="p-4 border border-zinc-200">Categoria</th>
               <th className="p-4 border border-zinc-200">Adicionado em</th>
             </tr>
-            {sales.slice(0, visibleSales).map((item) => {
+            {sales.map((item) => {
               return (
                 <tr key={item.id} className="even:bg-zinc-100">
                   <td className="h-14 px-2">{item.title}</td>

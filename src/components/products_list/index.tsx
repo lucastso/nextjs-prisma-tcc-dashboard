@@ -87,14 +87,6 @@ const ProductsList = ({ products }: ProductsListProps) => {
             Produtos ({products.length})
           </span>
           <div className="flex items-center gap-8">
-            <div
-              className={`items-center gap-8 ${
-                products.length > 15 ? 'flex' : 'hidden'
-              }`}
-            >
-              <button onClick={handleShowMoreClick}>Mostrar mais</button>
-              <button onClick={handleShowLessClick}>Mostrar menos</button>
-            </div>
             <AddButton />
           </div>
         </div>
@@ -108,7 +100,6 @@ const ProductsList = ({ products }: ProductsListProps) => {
               <th className="p-4 border border-zinc-200">Adicionado em</th>
             </tr>
             {products
-              .slice(0, visibleProducts)
               .filter((product) => product.stock > 5)
               .map((item) => {
                 return (
