@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 const EditButton = ({ product }: { product: ProductProps }) => {
+  const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
     title: product.title,
     description: product.description,
@@ -22,9 +23,12 @@ const EditButton = ({ product }: { product: ProductProps }) => {
     try {
       await api.put(`/products/${product.id}`, formData)
       alert('Produto alterado!')
+      setOpen(false)
       router.refresh()
     } catch (error) {
       alert('Erro ao alterar produto. Tente novamente mais tarde!')
+    } finally {
+      setOpen(false)
     }
   }
 
@@ -37,7 +41,7 @@ const EditButton = ({ product }: { product: ProductProps }) => {
 
   return (
     <div className="relative max-h-screen max-w-screen">
-      <Dialog.Root>
+      <Dialog.Root open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
         <Dialog.Trigger className="px-4 py-2 bg-green-400 rounded-md text-white">
           Editar
         </Dialog.Trigger>

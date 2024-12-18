@@ -3,9 +3,11 @@
 import { api } from '@/lib/axios'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const AddButton = () => {
   const router = useRouter()
+  const [open, setOpen] = useState(false)
 
   const handleAddProductSubmit = async (event: any) => {
     event.preventDefault()
@@ -21,13 +23,17 @@ const AddButton = () => {
 
     try {
       await api.post('/products', data)
+      setOpen(false)
       router.refresh()
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setOpen(false)
+    }
   }
 
   return (
     <div className="relative max-h-screen max-w-screen">
-      <Dialog.Root>
+      <Dialog.Root open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
         <Dialog.Trigger className="px-4 py-2 bg-blue-400 rounded-md text-white">
           Adicionar
         </Dialog.Trigger>
